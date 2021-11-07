@@ -15,9 +15,28 @@ from ttools.skyprotests.tests import SkyproTestCase  # noqa: E402
 
 class WelcomeTestCase(SkyproTestCase):
     def setUp(self):
-        with open("trends.html", 'r') as file:
+        with open("tag.html", 'r') as file:
             soup = BeautifulSoup(file, "html.parser")
         self.main = soup.body.main
+
+    def test_main_span(self):
+        span = self.main.span
+        self.assertIsNotNone(
+            span,
+            "%@Проверьте, что добавили тег 'строка'(span)")
+        span_tags = self.main.find_all('span', recursive=False)
+        len_span = len(span_tags)
+        self.assertEqual(
+            len_span, 2,
+            ("%@Проверьте что добавили все теги строка в блок main."
+             f" Должно быть 2, тогда как у вас {len_span}"))
+        expected_text = ['Посты по тегу', '3 поста']
+        span_text = (span_text.text for span_text in span_tags)
+        for expected, text, index in zip(expected_text, span_text, range(2)):
+            self.assertEqual(
+                expected, text,
+                f"%@Проверьте что {index} строка в блоке main содержит правильный текст"
+            )
 
     def test_header(self):
         header = self.main.h2
@@ -25,49 +44,49 @@ class WelcomeTestCase(SkyproTestCase):
             header,
             "%@Проверьте, что добавили заголовок 2 уровня.")
         self.assertEqual(
-            header.text, 'Cейчас в тренде',
+            header.text, '#Природа',
             "%@Проверьте что заголовок 2 уровня содержит правильный текст")
-        
-    def test_paragraph(self):
-        html_list_numbers = self.main.ol
+
+
+    def test_blocks(self):
+        html_div = self.main.div
         self.assertIsNotNone(
-            html_list_numbers,
-            "%@Проверьте, что добавили тег 'Нумерованный список'")
-        li_elements = html_list_numbers.find_all('li')
-        len_elements = len(li_elements)
+            html_div,
+            "%@Проверьте, что добавили блоки в тег main"
+        )
+        html_div_list = self.main.find_all('div')
+        ln_div_list = len(html_div_list)
         self.assertEqual(
-            len_elements, 10,
-            ("%@Проверьте что добавили все элементы списка."
-             f" Должно быть 10, тогда как у вас {len_elements}"))
-        trends = [
-            '#супер',
-            '#день',
-            '#ночь',
-            '#природа',
-            '#семья',
-            '#улыбка',
-            '#селфи',
-            '#кусь',
-            '#следуйзамной',
-            '#instagood',
-        ]
-        for trend, element, index in zip(trends, li_elements, range(10)):
-            self.assertIsNotNone(
-                element.a, "%@Проверьте что все элементы списка содержат тег 'ссылка'"
-            )
-            self.assertIsNotNone(
-                element.a.attrs.get('href'),
-                "%@Проверьте что все ссылки имеют аттрибут href"
+            ln_div_list, 3,
+            ("%@Проверьте, что у Вас правильное"
+             f" количество блоков. У Вас {ln_div_list},"
+             " тогда как должно быть 3.")
+        )
+        tags = {
+            'hr': 'орионтальный разделитель', 
+            'a':'тег со ссылкой', 
+            'span':'тег со строкой'}
+        users_text = {
+            1: {'@happycorgi': 'Очень мило, мне все нравится!'},
+            2: {'@techirktsk': 'Нашел землю. Такая хорошенькая! Съем ее!'},
+            3: {'@awwawwaww': 'Смотрите, какой у меня пуховик, классно смотрится на фоне звездного неба, да?'},
+        }
+        for div, index in zip(html_div_list, range(3)):
+            for key in tags.keys():
+                value = tags.get(key)
+                self.assertIsNotNone(
+                    getattr(div, key), f"%@Проверьте что {index+1} блок содержит {value}"
+                )
+            item = users_text.get(index+1).items()
+            [[user, text]] = item
+            self.assertEqual(
+                div.a.text, user,
+                f"%@Проверьте что {index+1} блок содержит ссылку с правильным пользователем."
             )
             self.assertEqual(
-                element.a.attrs.get('href'), '#',
-                "%@Проверьте, что всем аттрибутам href присвоено значение заглушки '#'"
+                div.span.text, text,
+                f"%@Проверьте что {index+1} блок содержит правильный текст с комментарием."
             )
-            self.assertEqual(
-                element.a.text, trend,
-                f"%@Проверьте, что {index+1} элемент списка имеет верное значение"
-            )
-        
 
 if __name__ == "__main__":
     unittest.main()
