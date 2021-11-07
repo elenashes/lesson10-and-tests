@@ -2,7 +2,7 @@ import sys
 import unittest
 from pathlib import Path
 from bs4 import BeautifulSoup
-
+import os
 
 BASENAME = 'lesson10-and-tests'
 cwd = Path.cwd()
@@ -11,9 +11,10 @@ basefolder_index = parts.index(BASENAME)
 basepath = Path(*parts[:basefolder_index + 1])
 sys.path.append(str(basepath))
 from ttools.skyprotests.tests import SkyproTestCase  # noqa: E402
+task_path = basepath.joinpath('part1', 'trends')
+os.chdir(task_path)
 
-
-class WelcomeTestCase(SkyproTestCase):
+class TrendTestCase(SkyproTestCase):
     def setUp(self):
         with open("trends.html", 'r') as file:
             soup = BeautifulSoup(file, "html.parser")
