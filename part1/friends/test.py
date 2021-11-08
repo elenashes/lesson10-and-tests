@@ -17,7 +17,7 @@ os.chdir(task_path)
 
 class TrendTestCase(SkyproTestCase):
     def setUp(self):
-        with open("friends.html", 'r') as file:
+        with open("friends.html", 'r', encoding="utf-8") as file:
             soup = BeautifulSoup(file, "html.parser")
         self.main = soup.body.main
 

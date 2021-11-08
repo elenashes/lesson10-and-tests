@@ -16,7 +16,7 @@ os.chdir(task_path)
 
 class SettingsTestCase(SkyproTestCase):
     def setUp(self):
-        with open("comments.html", 'r') as file:
+        with open("comments.html", 'r', encoding="utf-8") as file:
             soup = BeautifulSoup(file, "html.parser")
         self.main = soup.body.main
 

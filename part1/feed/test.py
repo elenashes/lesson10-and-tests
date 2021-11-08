@@ -16,7 +16,7 @@ os.chdir(task_path)
 
 class TagTestCase(SkyproTestCase):
     def setUp(self):
-        with open("feed.html", 'r') as file:
+        with open("feed.html", 'r', encoding="utf-8") as file:
             soup = BeautifulSoup(file, "html.parser")
         self.main = soup.body.main
 

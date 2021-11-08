@@ -16,7 +16,7 @@ os.chdir(task_path)
 
 class WelcomeTestCase(SkyproTestCase):
     def setUp(self):
-        with open("welcome_page.html", 'r') as file:
+        with open("welcome_page.html", 'r', encoding="utf-8") as file:
             soup = BeautifulSoup(file, "html.parser")
         self.main = soup.body.main
 
