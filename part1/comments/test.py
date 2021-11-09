@@ -60,10 +60,6 @@ class SettingsTestCase(SkyproTestCase):
             item = users_text.get(index+1).items()
             [[user, values]] = item
             p_list = div.find_all('p')
-            self.assertIsNotNone(
-                p_list.a,
-                f"%@Проверьте что {index+1} блок содержит абзатц со ссылкой."
-            )
             self.assertEqual(
                 p_list[0].a.text, user,
                 f"%@Проверьте что {index+1} блок содержит ссылку с правильным пользователем."
