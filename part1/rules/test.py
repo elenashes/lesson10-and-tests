@@ -33,7 +33,7 @@ class SettingsTestCase(SkyproTestCase):
         paragraphs = self.main.p
         self.assertIsNotNone(
             paragraphs,
-            "%@Проверьте, что добавили абзатцы в тег main"
+            "%@Проверьте, что добавили абзацы в тег main"
         )
         expected = {
             0: ['i', ("Сервис предоставляется как "
@@ -52,7 +52,7 @@ class SettingsTestCase(SkyproTestCase):
         current_len = len(paragraphs)
         self.assertEqual(
             current_len, expected_len,
-            (f"%@Проверьте, что добавили все абзатцы. У Вас их {current_len}, "
+            (f"%@Проверьте, что добавили все абзацы. У Вас их {current_len}, "
              f"тогда как должно быть {expected_len}"))
 
 
@@ -60,11 +60,11 @@ class SettingsTestCase(SkyproTestCase):
             tag = getattr(paragraph, expected.get(index)[0])
             self.assertIsNotNone(
                 tag, 
-                f"%@Проверьте, что добавили все теги {tag.name} в абзатцы"
+                f"%@Проверьте, что добавили все теги {tag.name} в абзацы"
             )
             self.assertEqual(
                 tag.text, expected.get(index)[1],
-                f"%@Проверьте, правильный ли текст в абзатце {index+1}")
+                f"%@Проверьте, правильный ли текст в абзаце {index+1}")
 
 
 if __name__ == "__main__":

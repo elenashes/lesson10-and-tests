@@ -64,7 +64,7 @@ class SettingsTestCase(SkyproTestCase):
         paragraphs = self.main.p
         self.assertIsNotNone(
             paragraphs,
-            "%@Проверьте, что добавили абзатц в тело тега main"
+            "%@Проверьте, что добавили абзац в тело тега main"
         )
         expected = {
             0: ['a', "Редактировать"]
@@ -76,11 +76,11 @@ class SettingsTestCase(SkyproTestCase):
             tag = getattr(paragraph, expected.get(index)[0])
             self.assertIsNotNone(
                 tag, 
-                f"%@Проверьте, что добавили тег {tag.name} в абзатц"
+                f"%@Проверьте, что добавили тег {tag.name} в абзац"
             )
             self.assertEqual(
                 tag.text, expected.get(index)[1],
-                f"%@Проверьте, правильный ли текст в абзатце")
+                f"%@Проверьте, правильный ли текст в абзаце")
 
 
 if __name__ == "__main__":

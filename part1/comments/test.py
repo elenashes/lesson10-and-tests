@@ -44,7 +44,7 @@ class SettingsTestCase(SkyproTestCase):
              " тогда как должно быть 3.")
         )
         tags = {
-            'p': 'абзатц'}
+            'p': 'абзац'}
         users_text = {
             1: {'@happycorgi': ['Очень мило, мне все нравится!']},
             2: {'@inpiration_ru': ['Так держать, работаем дальше!']},

@@ -67,14 +67,14 @@ class SettingsTestCase(SkyproTestCase):
         paragraphs = self.main.p
         self.assertIsNotNone(
             paragraphs,
-            "%@Проверьте, что добавили абзатцы в тег main"
+            "%@Проверьте, что добавили абзацы в тег main"
         )
         expected_len = 2
         paragraphs_with_crossed = self.main.find_all('p', recursive=False)
         current_len = len(paragraphs_with_crossed)
         self.assertEqual(
             current_len, expected_len,
-            (f"%@Проверьте, что добавили все абзатцы. У Вас их {current_len}, "
+            (f"%@Проверьте, что добавили все абзацы. У Вас их {current_len}, "
              f"тогда как должно быть {expected_len}"))
         cross_strings_values = {
             0: 'Включить кэш',

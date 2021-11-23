@@ -49,7 +49,7 @@ class WelcomeTestCase(SkyproTestCase):
         paragraph = self.main.p
         self.assertIsNotNone(
             paragraph,
-            "%@Проверьте, что добавили тег 'абзатц'")
+            "%@Проверьте, что добавили тег 'абзац'")
         self.assertEqual(
             paragraph.text, 'У нас тут фоточки и уютно. Смотрите чужие, постите свои.',
             "%@Проверьте что в теле тега <p> содержится правильный текст'"

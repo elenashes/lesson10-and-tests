@@ -33,7 +33,7 @@ class SettingsTestCase(SkyproTestCase):
         paragraphs = self.main.p
         self.assertIsNotNone(
             paragraphs,
-            "%@Проверьте, что добавили абзатц в тело тега main"
+            "%@Проверьте, что добавили абзац в тело тега main"
         )
         expected = {
             0: ['strong', "Sky.pro"],
@@ -50,21 +50,21 @@ class SettingsTestCase(SkyproTestCase):
                 tag = getattr(paragraph, expected_list[0])
                 self.assertIsNotNone(
                     tag, 
-                    f"%@Проверьте, что добавили тег {tag.name} в абзатц {index+1}"
+                    f"%@Проверьте, что добавили тег {tag.name} в абзац {index+1}"
                 )
                 self.assertEqual(
                     tag.text, expected.get(index)[1],
-                    f"%@Проверьте, правильный ли текст в абзатце {index+1}")
+                    f"%@Проверьте, правильный ли текст в абзаце {index+1}")
             else:
                 self.assertEqual(
                     paragraph.text, expected.get(index)[0],
-                    f"%@Проверьте, правильный ли текст в абзатце {index+1}")
+                    f"%@Проверьте, правильный ли текст в абзаце {index+1}")
             if index == 3:
                 strongs = paragraph.find_all('strong')
                 len_strongs = len(strongs)
                 self.assertEqual(
                     len_strongs, 2,
-                    "%@Проверьте что выделяли текст жирным в последнем абзатце."
+                    "%@Проверьте что выделяли текст жирным в последнем абзаце."
                 )
                 expected_list = ['26', '2K']
                 for strong, expected in zip(strongs, expected_list):
