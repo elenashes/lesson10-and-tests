@@ -26,7 +26,7 @@ class TrendTestCase(SkyproTestCase):
             header,
             "%@Проверьте, что добавили заголовок 2 уровня.")
         self.assertEqual(
-            header.text, 'Cейчас в тренде',
+            header.text, 'Сейчас в тренде',
             "%@Проверьте что заголовок 2 уровня содержит правильный текст")
         
     def test_paragraph(self):
